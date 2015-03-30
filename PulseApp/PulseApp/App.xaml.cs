@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.WindowsAzure.MobileServices;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -27,6 +28,10 @@ namespace PulseApp
     {
         private TransitionCollection transitions;
 
+        public static MobileServiceClient MobileService = new MobileServiceClient(
+            "https://teampulse.azure-mobile.net/",
+            "NpbTbxMangUEwInuJpyCfPosgWBWjf71");
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -36,6 +41,9 @@ namespace PulseApp
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
         }
+
+
+
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
@@ -91,7 +99,7 @@ namespace PulseApp
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                if (!rootFrame.Navigate(typeof(MainPage), e.Arguments))
+                if (!rootFrame.Navigate(typeof(HomePage), e.Arguments))
                 {
                     throw new Exception("Failed to create initial page");
                 }
