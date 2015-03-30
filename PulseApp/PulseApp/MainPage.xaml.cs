@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using PulseApp.Models;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
@@ -24,13 +25,11 @@ namespace PulseApp
     public sealed partial class MainPage : Page
     {
         public static MobileServiceClient MobileService = new MobileServiceClient(
-                  "http://localhost:51803"
+              "https://teampulse.azure-mobile.net/",
+              "NpbTbxMangUEwInuJpyCfPosgWBWjf71"
         );
-        // Use this constructor instead after publishing to the cloud
-        // public static MobileServiceClient MobileService = new MobileServiceClient(
-        //      "https://teampulse.azure-mobile.net/",
-        //      "NpbTbxMangUEwInuJpyCfPosgWBWjf71"
-        //);
+
+        public IMobileServiceTable<User> userTable = App.MobileService.GetTable<User>();
 
         public MainPage()
         {
@@ -58,6 +57,7 @@ namespace PulseApp
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(NewEventPage));
+            //MobileService.GetTable
         }
     }
 }

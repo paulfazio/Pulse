@@ -1,4 +1,5 @@
 ﻿using Microsoft.WindowsAzure.MobileServices;
+using PulseApp.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,6 +18,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
+
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
 namespace PulseApp
@@ -31,6 +33,8 @@ namespace PulseApp
         public static MobileServiceClient MobileService = new MobileServiceClient(
             "https://teampulse.azure-mobile.net/",
             "NpbTbxMangUEwInuJpyCfPosgWBWjf71");
+
+        public IMobileServiceTable<User> userTable = App.MobileService.GetTable<User>();
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -99,7 +103,8 @@ namespace PulseApp
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                if (!rootFrame.Navigate(typeof(HomePage), e.Arguments))
+//                if (!rootFrame.Navigate(typeof(HomePage), e.Arguments))
+                if (!rootFrame.Navigate(typeof(MainPage), e.Arguments))
                 {
                     throw new Exception("Failed to create initial page");
                 }
