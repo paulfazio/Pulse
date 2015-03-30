@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using Microsoft.WindowsAzure.MobileServices;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -23,15 +22,6 @@ namespace PulseApp
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public static MobileServiceClient MobileService = new MobileServiceClient(
-                  "http://localhost:51803"
-        );
-        // Use this constructor instead after publishing to the cloud
-        // public static MobileServiceClient MobileService = new MobileServiceClient(
-        //      "https://teampulse.azure-mobile.net/",
-        //      "NpbTbxMangUEwInuJpyCfPosgWBWjf71"
-        //);
-
         public MainPage()
         {
             this.InitializeComponent();
@@ -53,11 +43,6 @@ namespace PulseApp
             // Windows.Phone.UI.Input.HardwareButtons.BackPressed event.
             // If you are using the NavigationHelper provided by some templates,
             // this event is handled for you.
-        }
-
-        private void AppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(NewEventPage));
         }
     }
 }
