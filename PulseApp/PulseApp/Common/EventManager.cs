@@ -9,12 +9,12 @@ namespace PulseApp.Common
 {
     public class EventManager
     {
-        public void CreateEvent(Event pulseEvent, List<User> intendedAttendees)
+        public void CreateEvent(Event pulseEvent, List<EventMember> intendedAttendees)
         {
 
         }
 
-        public void UpdateEvent(Event pulseEvent, List<User> intendedAttendees)
+        public void UpdateEvent(Event pulseEvent, List<EventMember> intendedAttendees)
         {
 
         }
