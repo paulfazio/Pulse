@@ -41,7 +41,7 @@ namespace PulseApp
         {
             var events = new List<Event>();
             var members = new List<EventMember>();
-            members.Add(new EventMember { Distance = 0.5, DisplayName = "Joe Schmoe", Email = "TextBox" });
+            members.Add(new EventMember { Distance = 0.5, DisplayName = "Joe Schmoe", Email = "" });
             members.Add(new EventMember { Distance = 0.1, DisplayName = "Santa Claus", Email = "" });
             members.Add(new EventMember { Distance = 15, DisplayName = "Lebron James", Email = "" });
             members.Add(new EventMember { Distance = 12, DisplayName = "The Muffin Man", Email = "" });
