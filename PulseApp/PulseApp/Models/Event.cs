@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PulseApp.Models
 {
-    public class Event : INotifyPropertyChanged
+    public class Event : INotifyPropertyChanged, IEquatable<Event>
     {
         private string name;
         private string location;
@@ -99,6 +99,28 @@ namespace PulseApp.Models
             {
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+
+        public bool Equals(Event other)
+        {
+            return this.Id.Equals(other.Id);
+        }
+
+        public bool Equals(object other)
+        {
+            var otherEvent = other as Event;
+
+            if (otherEvent == null)
+            {
+                return false;
+            }
+
+            return this.Equals(otherEvent);
+        }
+
+        public int GetHashCode()
+        {
+            return this.Id.GetHashCode();
         }
     }
 }

@@ -49,8 +49,8 @@ namespace PulseApp
             members.Add(new EventMember { Distance = 3, DisplayName = "Paul Fazio" });
             members.Add(new EventMember { Distance = 100, DisplayName = "Brandon Li" });
 
-            events.Add(new Event { Location = "1CC", Name = "Hackathon", Time = DateTime.Now, Members = members });
-            events.Add(new Event { Location = "1MEM", Name = "Boring stuff", Time = new DateTime(2015, 4, 1, 10, 30, 0), Members = members });
+            events.Add(new Event { Id = Guid.NewGuid(), Location = "1CC", Name = "Hackathon", Time = DateTime.Now, Members = members });
+            events.Add(new Event { Id = Guid.NewGuid(), Location = "1MEM", Name = "Boring stuff", Time = new DateTime(2015, 4, 1, 10, 30, 0), Members = members });
 
             this.Events.Clear();
 

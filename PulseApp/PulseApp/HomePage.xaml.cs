@@ -112,26 +112,28 @@ namespace PulseApp
             var currentUser = ApplicationData.Current.LocalSettings.Values["CurrentUser"];
             var eventMember = thisEvent.Members.Find(member => member.DisplayName.Equals(currentUser));
 
-            if (eventMember != null && eventMember.HasResponded == false)
-            {
-                var alert = new MessageDialog("Do you plan on attending this event?");
+            //if (eventMember != null && eventMember.HasResponded == false)
+            //{
+                var alert = new MessageDialog("Do you plan on attending this event?", "Confirm Attendance");
                 alert.Commands.Add(new UICommand("Accept"));
                 alert.Commands.Add(new UICommand("Decline"));
-                alert.Commands.Add(new UICommand("Cancel"));
+                //alert.Commands.Add(new UICommand("Cancel"));
                 var command = await alert.ShowAsync();
 
-                if (command.Id.Equals("Accept"))
+                if (command.Label.Equals("Accept"))
                 {
                     this.RespondToInvitation(true);
                     this.ShowEvent(thisEvent);
                 }
-                else if (command.Id.Equals("Decline"))
+                else if (command.Label.Equals("Decline"))
                 {
+                    var viewModel = (HomePageViewModel)this.DataContext;
+                    viewModel.Events.Remove(thisEvent);
                     this.RespondToInvitation(false);
                 }
 
                 return;
-            }
+            //}
 
             this.ShowEvent(thisEvent);
         }

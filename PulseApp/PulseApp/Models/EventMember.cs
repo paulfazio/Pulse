@@ -13,7 +13,7 @@ namespace PulseApp.Models
         private string name;
         private double distance;
 
-        public string EmailAddress { get; set; }
+        public string Email { get; set; }
 
         public bool HasResponded { get; set; }
 
@@ -32,8 +32,6 @@ namespace PulseApp.Models
         }
 
         public Guid Id { get; set; }
-
-        public string Email { get; set; }
 
         public DateTime LastUpdateTime
         {

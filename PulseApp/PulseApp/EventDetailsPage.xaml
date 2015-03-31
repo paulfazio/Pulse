@@ -24,7 +24,7 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Grid.Column="0" Margin="9,0,0,0">
-                        <TextBlock Text="{Binding Name}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                        <TextBlock Text="{Binding DisplayName}" Style="{ThemeResource BodyTextBlockStyle}"/>
                         <TextBlock Text="{Binding Converter={StaticResource memberDetailConverter}}" Style="{ThemeResource ListViewItemSubheaderTextBlockStyle}" />
                     </StackPanel>
                 </Grid>
@@ -49,10 +49,10 @@
               ItemsSource="{Binding ArrivedMembers}"
               ItemTemplate="{StaticResource EventMemberTemplate}" />
 
-            <TextBlock Margin="29,0,0,20" Style ="{ThemeResource BodyTextBlockStyle}"  Visibility="{Binding ArrivedMembers, Converter={StaticResource listSizeToVisibilityConverter}}" Text="There are no members to show"></TextBlock>
+            <TextBlock Margin="29,0,0,0" Style ="{ThemeResource BodyTextBlockStyle}"  Visibility="{Binding ArrivedMembers, Converter={StaticResource listSizeToVisibilityConverter}}" Text="There are no members to show"></TextBlock>
 
-            <Border BorderBrush="White" BorderThickness="1">
-                <TextBlock Foreground="Red" Margin="5,5,5,5" Text="Unrrived Members" Style="{ThemeResource GroupHeaderTextBlockStyle}"></TextBlock>
+            <Border Margin="0,20,0,0" BorderBrush="White" BorderThickness="1">
+                <TextBlock Foreground="Red" Margin="5,5,5,5" Text="Unarrived Members" Style="{ThemeResource GroupHeaderTextBlockStyle}"></TextBlock>
             </Border>
             <ListView x:Name="unarrivedMembers"
               Margin="20,0,0,0"
