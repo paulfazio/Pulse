@@ -1,4 +1,5 @@
 ﻿using PulseApp.Common;
+using PulseApp.Models;
 using System;
 using Windows.ApplicationModel.Email;
 using Windows.UI.Xaml;
@@ -99,30 +100,10 @@ namespace PulseApp
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
+            Event newEvent = new Event();
+            newEvent.Name = MeetingName.Text;
+            newEvent.Location = MeetingLocation.Text;
             this.Frame.Navigate(typeof(EventDetailsPage));
-        }
-
-        private async void InviteByEmailButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Define Recipient
-            EmailRecipient sendTo = new EmailRecipient()
-            {
-                Name = "Name of Recepient",
-                Address = "pfazio@microsoft.com"
-            };
-
-            // Create email object
-            EmailMessage mail = new EmailMessage();
-            mail.Subject = "this is the Subject";
-            mail.Body = "this is the Body";
-
-            // Add recipients to the mail object
-            mail.To.Add(sendTo);
-            //mail.Bcc.Add(sendTo);
-            //mail.CC.Add(sendTo);
-
-            // Open the share contract with Mail only:
-            await EmailManager.ShowComposeNewEmailAsync(mail);
         }
     }
 }
