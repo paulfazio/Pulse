@@ -1,5 +1,7 @@
 ﻿using PulseApp.Common;
+using PulseApp.Models;
 using System;
+using System.Collections.Generic;
 using Windows.ApplicationModel.Email;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -123,6 +125,32 @@ namespace PulseApp
 
             // Open the share contract with Mail only:
             await EmailManager.ShowComposeNewEmailAsync(mail);
+
+            var dateTime = this.meetingDate.Date.DateTime;
+            dateTime = dateTime.AddHours(this.meetingTime.Time.Hours);
+            dateTime = dateTime.AddMinutes(this.meetingTime.Time.Minutes);
+
+            var eventMembers = new List<EventMember>()
+            {
+                new EventMember() { Name = "Avi", Email = "aprince@microsoft.com"},
+                new EventMember() { Name = "Nana", Email = "nanaec@microsoft.com"},
+                new EventMember() { Name = "Danielle", Email = "danio@microsoft.com"},
+                new EventMember() { Name = "Paul", Email = "pfazio@microsoft.com"},
+                new EventMember() { Name = "Brandon", Email = "brali@microsoft.com"},
+                new EventMember() { Name = "Gilbert", Email = "gilar@microsoft.com"},
+            };
+
+            // create Event
+            Event pulseEvent = new Event()
+            {
+                Name = this.meetingName.Text,
+                Location = this.meetingLocation.Text,
+                Time = dateTime,
+                Members = eventMembers
+            };
+
+            EventManager eveMgr = new EventManager();
+            eveMgr.CreateEvent(pulseEvent, eventMembers);
         }
     }
 }

@@ -14,6 +14,9 @@ namespace PulseApp.Models
         private DateTime time;
         private List<EventMember> members;
 
+
+        public Guid Id { get; set; }
+
         public string Name
         {
             get

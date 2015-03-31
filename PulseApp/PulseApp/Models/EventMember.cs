@@ -31,6 +31,10 @@ namespace PulseApp.Models
             }
         }
 
+        public Guid Id { get; set; }
+
+        public string Email { get; set; }
+
         public DateTime LastUpdateTime
         {
             get
