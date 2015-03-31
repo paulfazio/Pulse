@@ -99,7 +99,7 @@ namespace PulseApp
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(MainPage));
+            this.Frame.Navigate(typeof(EventDetailsPage));
         }
 
         private async void InviteByEmailButton_Click(object sender, RoutedEventArgs e)

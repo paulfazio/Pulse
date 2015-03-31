@@ -107,5 +107,10 @@ namespace PulseApp
         {
             this.Frame.Navigate(typeof(EventDetailsPage), ((ListView)sender).SelectedItem);
         }
+
+        private void AppBarButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(NewEventPage));
+        }
     }
 }

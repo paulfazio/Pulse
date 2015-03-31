@@ -115,7 +115,6 @@ namespace PulseApp
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(HomePage));
-            //MobileService.GetTable
         }
     }
 }

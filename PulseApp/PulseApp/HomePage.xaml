@@ -31,7 +31,7 @@
 
         </ResourceDictionary>
     </Page.Resources>
-    
+
     <Grid>
         <Grid.Resources>
             <CollectionViewSource x:Key="GroupedEventsCollection" IsSourceGrouped="True" ItemsPath="{Binding GroupedEvents}" />
@@ -55,6 +55,7 @@
                 </GroupStyle.HeaderTemplate>
             </GroupStyle>
         </ListView>
+        <AppBarButton HorizontalAlignment="Center" Icon="Add" Label="" Margin="0" VerticalAlignment="Bottom" RenderTransformOrigin="0.531,-0.457" Height="67" Click="AppBarButton_Click"/>
 
 
     </Grid>
