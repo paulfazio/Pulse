@@ -104,7 +104,7 @@ namespace PulseApp
             Event newEvent = new Event();
             newEvent.Name = meetingName.Text;
             newEvent.Location = meetingLocation.Text;
-            this.Frame.Navigate(typeof(EventDetailsPage));
+            this.Frame.Navigate(typeof(EventDetailsPage), newEvent);
         }
 
         private void InviteByEmailButton_Click(object sender, RoutedEventArgs e)

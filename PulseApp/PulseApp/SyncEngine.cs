@@ -15,6 +15,8 @@ namespace PulseApp
         private DispatcherTimer refreshTimer;
         private static List<Event> currentEvents;
 
+        private static List<Event> events;
+
         public event EventHandler DataRefreshed;
 
         public static List<Event> Events { 
@@ -30,7 +32,7 @@ namespace PulseApp
             set
             {
                 currentEvents = value;
-            }
+        }
         }
 
         public static EventMember defaultUser { get; set; }

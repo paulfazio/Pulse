@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace PulseApp.Models
 {
@@ -29,6 +31,23 @@ namespace PulseApp.Models
             {
                 this.name = value;
                 this.NotifyPropertyChanged("Name");
+            }
+        }
+
+        public string Image
+        {
+            get
+            {
+                var currentEmail = ApplicationData.Current.LocalSettings.Values["CurrentEmail"];
+                var thisEventMember = this.Members.Find(member => member.Email.Equals(currentEmail));
+
+                if (thisEventMember.HasResponded == true)
+                {
+                    return "/Assets/CheckMark.png";
+
+                }
+
+                return "/Assets/ExclamationMark.png";
             }
         }
 
