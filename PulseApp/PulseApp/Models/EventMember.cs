@@ -13,6 +13,10 @@ namespace PulseApp.Models
         private string name;
         private double distance;
 
+        public EventMember()
+        {
+        }
+
         public string Name
         {
             get
@@ -29,7 +33,7 @@ namespace PulseApp.Models
 
         public Guid Id { get; set; }
 
-        public string email { get; set; }
+        public string Email { get; set; }
 
         public DateTime LastUpdateTime
         {
