@@ -5,6 +5,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using PulseApp.Models;
 using PulseApp.Common;
+using Windows.Storage;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
@@ -114,6 +115,7 @@ namespace PulseApp
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
+            ApplicationData.Current.LocalSettings.Values["CurrentUser"] = ((TextBox)this.FindName("UserName")).Text;
             this.Frame.Navigate(typeof(HomePage));
         }
     }
