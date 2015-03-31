@@ -53,6 +53,7 @@
             <TextBlock Style ="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding Events, Converter={StaticResource listSizeToVisibilityConverter}}" Text="There are no events to show"></TextBlock>
 
             <Button HorizontalAlignment="Center" Click="ManualRefresh" Content="Refresh data" ></Button>
+            <AppBarButton HorizontalAlignment="Center" Icon="Add" Label="" Margin="0" VerticalAlignment="Bottom" RenderTransformOrigin="0.531,-0.457" Height="67" Click="AppBarButton_Click"/>
         </StackPanel>
     </ScrollViewer>
 
