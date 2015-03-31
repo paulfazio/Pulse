@@ -8,6 +8,8 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -100,7 +102,49 @@ namespace PulseApp
 
         public void EventsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            this.Frame.Navigate(typeof(EventDetailsPage), ((ListView)sender).SelectedItem);
+            this.PromptResponse((Event)((ListView)sender).SelectedItem);
+
+        }
+
+
+        private async void PromptResponse(Event thisEvent)
+        {
+            var currentUser = ApplicationData.Current.LocalSettings.Values["CurrentUser"];
+            var eventMember = thisEvent.Members.Find(member => member.DisplayName.Equals(currentUser));
+
+            if (eventMember != null && eventMember.HasResponded == false)
+            {
+                var alert = new MessageDialog("Do you plan on attending this event?");
+                alert.Commands.Add(new UICommand("Accept"));
+                alert.Commands.Add(new UICommand("Decline"));
+                alert.Commands.Add(new UICommand("Cancel"));
+                var command = await alert.ShowAsync();
+
+                if (command.Id.Equals("Accept"))
+                {
+                    this.RespondToInvitation(true);
+                    this.ShowEvent(thisEvent);
+                }
+                else if (command.Id.Equals("Decline"))
+                {
+                    this.RespondToInvitation(false);
+                }
+
+                return;
+            }
+
+            this.ShowEvent(thisEvent);
+        }
+
+        public void RespondToInvitation(bool isGoing)
+        {
+
+        }
+
+        public void ShowEvent(Event thisEvent)
+        {
+            this.Frame.Navigate(typeof(EventDetailsPage), thisEvent);
+
         }
 
         private void ManualRefresh(object sender, RoutedEventArgs e)

@@ -13,7 +13,11 @@ namespace PulseApp.Models
         private string name;
         private double distance;
 
-        public string Name
+        public string EmailAddress { get; set; }
+
+        public bool HasResponded { get; set; }
+
+        public string DisplayName
         {
             get
             {
@@ -29,7 +33,7 @@ namespace PulseApp.Models
 
         public Guid Id { get; set; }
 
-        public string email { get; set; }
+        public string Email { get; set; }
 
         public DateTime LastUpdateTime
         {
@@ -83,7 +87,7 @@ namespace PulseApp.Models
             }
             else
             {
-                return this.Name.CompareTo(otherMember.Name);
+                return this.DisplayName.CompareTo(otherMember.DisplayName);
             }
         }
     }

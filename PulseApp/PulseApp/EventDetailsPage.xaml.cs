@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -32,7 +35,6 @@ namespace PulseApp
         {
             this.InitializeComponent();
             this.navigationHelper = new NavigationHelper(this);
-
         }
 
         /// <summary>
@@ -45,6 +47,23 @@ namespace PulseApp
             this.currentEvent = (Event)e.Parameter;
             this.DataContext = this.currentEvent;
             this.navigationHelper.OnNavigatedTo(e);
+
+            this.PromptResponse();
+        }
+
+        private void PromptResponse()
+        {
+            var currentUser = ApplicationData.Current.LocalSettings.Values["CurrentUser"];
+            var eventMember = ((Event)this.DataContext).Members.Find(member => member.DisplayName.Equals(currentUser));
+
+            //if (eventMember != null && eventMember.HasResponded == false)
+            //{
+                var alert = new MessageDialog("Do you plan on attending this event?");
+                alert.Commands.Add(new UICommand("Accept"));
+                alert.Commands.Add(new UICommand("Decline"));
+                alert.Commands.Add(new UICommand("Cancel"));
+                var command = alert.ShowAsync();
+            //}
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)

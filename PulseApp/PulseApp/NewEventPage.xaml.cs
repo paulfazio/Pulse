@@ -1,6 +1,7 @@
 ﻿using PulseApp.Common;
 using PulseApp.Models;
 using System;
+using System.Collections.Generic;
 using Windows.ApplicationModel.Email;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
