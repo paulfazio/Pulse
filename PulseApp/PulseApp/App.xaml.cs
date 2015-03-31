@@ -104,7 +104,7 @@ namespace PulseApp
                 // configuring the new page by passing required information as a navigation
                 // parameter
 //                if (!rootFrame.Navigate(typeof(HomePage), e.Arguments))
-                if (!rootFrame.Navigate(typeof(HomePage), e.Arguments))
+                if (!rootFrame.Navigate(typeof(MainPage), e.Arguments))
                 {
                     throw new Exception("Failed to create initial page");
                 }
