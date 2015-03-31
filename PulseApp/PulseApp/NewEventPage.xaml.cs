@@ -101,6 +101,9 @@ namespace PulseApp
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
+            Event newEvent = new Event();
+            newEvent.Name = meetingName.Text;
+            newEvent.Location = meetingLocation.Text;
             this.Frame.Navigate(typeof(EventDetailsPage));
         }
 
