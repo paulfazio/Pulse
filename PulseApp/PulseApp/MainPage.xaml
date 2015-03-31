@@ -10,9 +10,9 @@
 
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="59,257,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" FontSize="24"/>
-        <TextBox HorizontalAlignment="Left" Margin="40,296,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="322"/>
+        <TextBox x:Name="EmailAddress" PlaceholderText="" HorizontalAlignment="Left" Margin="40,296,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="322"/>
         <TextBlock HorizontalAlignment="Left" Margin="59,404,0,0" TextWrapping="Wrap" Text="Display Name" VerticalAlignment="Top" FontSize="24"/>
-        <TextBox HorizontalAlignment="Left" Margin="40,437,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="322"/>
+        <TextBox x:Name="UserName" PlaceholderText="" HorizontalAlignment="Left" Margin="40,437,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="322"/>
         <RichTextBlockOverflow HorizontalAlignment="Left" Height="100" Margin="470,335,-170,0" VerticalAlignment="Top" Width="100"/>
         <AppBarButton HorizontalAlignment="Center" Icon="Forward" Label="" Margin="0" VerticalAlignment="Bottom" Click="AppBarButton_Click"/>
         <Image HorizontalAlignment="Left" Height="100" Margin="148,105,0,0" VerticalAlignment="Top" Width="100"/>

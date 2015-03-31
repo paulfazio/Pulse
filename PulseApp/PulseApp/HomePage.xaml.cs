@@ -8,6 +8,8 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -98,9 +100,57 @@ namespace PulseApp
         }
         #endregion
 
-        public void EventsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        public void EventsListView_ItemClicked(object sender, ItemClickEventArgs e)
         {
-            this.Frame.Navigate(typeof(EventDetailsPage), ((ListView)sender).SelectedItem);
+            this.PromptResponse((Event)e.ClickedItem);
+
+        }
+
+
+        private async void PromptResponse(Event thisEvent)
+        {
+            var currentUser = ApplicationData.Current.LocalSettings.Values["CurrentUser"];
+            var eventMember = thisEvent.Members.Find(member => member.DisplayName.Equals(currentUser));
+
+            //if (eventMember != null && eventMember.HasResponded == false)
+            //{
+                var alert = new MessageDialog("Do you plan on attending this event?", "Confirm Attendance");
+                alert.Commands.Add(new UICommand("Accept"));
+                alert.Commands.Add(new UICommand("Decline"));
+                var command = await alert.ShowAsync();
+
+            if (command == null)
+            {
+                return;
+            }
+
+                else if (command.Label.Equals("Accept"))
+                {
+                    this.RespondToInvitation(true);
+                    this.ShowEvent(thisEvent);
+                }
+                else if (command.Label.Equals("Decline"))
+                {
+                    var viewModel = (HomePageViewModel)this.DataContext;
+                    viewModel.Events.Remove(thisEvent);
+                    this.RespondToInvitation(false);
+                }
+
+                return;
+            //}
+
+            this.ShowEvent(thisEvent);
+        }
+
+        public void RespondToInvitation(bool isGoing)
+        {
+
+        }
+
+        public void ShowEvent(Event thisEvent)
+        {
+            this.Frame.Navigate(typeof(EventDetailsPage), thisEvent);
+
         }
 
         private void ManualRefresh(object sender, RoutedEventArgs e)

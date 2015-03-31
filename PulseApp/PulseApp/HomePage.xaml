@@ -13,7 +13,8 @@
 
         <ResourceDictionary>
             <converter:ListSizeToVisibilityConverter x:Key="listSizeToVisibilityConverter" />
-            
+            <converter:EventImageConverter x:Key="eventImageConverter" />
+
             <DataTemplate x:Key="StandardTripleLineItemTemplate">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -21,8 +22,8 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Border Background="White" Margin="0,9.5,0,0" Grid.Column="0" HorizontalAlignment="Left">
-                        <Image Source="{Binding ImagePath}" Stretch="UniformToFill" Height="79" Width="79"/>
+                    <Border Margin="0,9.5,0,0" Grid.Column="0" HorizontalAlignment="Left">
+                        <Image Source="{Binding Converter={StaticResource eventImageConverter}}" Height="79" Width="79"/>
                     </Border>
                     <StackPanel Grid.Column="1" Margin="14.5,0,0,0">
                         <TextBlock Text="{Binding Name}" Style="{ThemeResource ListViewItemTextBlockStyle}"/>
@@ -34,27 +35,31 @@
 
         </ResourceDictionary>
     </Page.Resources>
-    
-    <ScrollViewer>
-        <StackPanel>
-            <TextBlock Margin="9,0,0,20" Text="Pulse" Style="{ThemeResource HeaderTextBlockStyle}" ></TextBlock>
 
-            <Border BorderBrush="White" BorderThickness="1">
-                <TextBlock Margin="5,5,5,5" Text="Upcoming Events" Style="{ThemeResource GroupHeaderTextBlockStyle}"></TextBlock>
-            </Border>
-            <ListView Grid.Row="0"
+    <ScrollViewer>
+        <Grid>
+            <StackPanel>
+                <TextBlock Margin="9,0,0,20" Text="Pulse" Style="{ThemeResource HeaderTextBlockStyle}" ></TextBlock>
+
+                <Border BorderBrush="White" BorderThickness="1">
+                    <TextBlock Margin="5,5,5,5" Text="Upcoming Events" Style="{ThemeResource GroupHeaderTextBlockStyle}"></TextBlock>
+                </Border>
+                <ListView Grid.Row="0"
+                      IsItemClickEnabled="true"
             x:Name="eventsListView"
               Margin="20,0,0,60"
               ItemsSource="{Binding Events}"
-              SelectionChanged="EventsListView_SelectionChanged"
+              ItemClick="EventsListView_ItemClicked"
               ItemTemplate="{StaticResource StandardTripleLineItemTemplate}">
 
-            </ListView>
-            <TextBlock Style ="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding Events, Converter={StaticResource listSizeToVisibilityConverter}}" Text="There are no events to show"></TextBlock>
+                </ListView>
+                <TextBlock Style ="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding Events, Converter={StaticResource listSizeToVisibilityConverter}}" Text="There are no events to show"></TextBlock>
 
-            <Button HorizontalAlignment="Center" Click="ManualRefresh" Content="Refresh data" ></Button>
+                <Button HorizontalAlignment="Center" Click="ManualRefresh" Content="Refresh data" ></Button>
+            </StackPanel>
             <AppBarButton HorizontalAlignment="Center" Icon="Add" Label="" Margin="0" VerticalAlignment="Bottom" RenderTransformOrigin="0.531,-0.457" Height="67" Click="AppBarButton_Click"/>
-        </StackPanel>
+        </Grid>
+
     </ScrollViewer>
 
 </Page>

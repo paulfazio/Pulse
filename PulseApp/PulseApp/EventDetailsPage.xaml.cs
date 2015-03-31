@@ -6,8 +6,11 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Devices.Geolocation;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -34,7 +37,6 @@ namespace PulseApp
         {
             this.InitializeComponent();
             this.navigationHelper = new NavigationHelper(this);
-
         }
 
         /// <summary>
@@ -99,7 +101,7 @@ namespace PulseApp
             foreach (var notArrivedMem in nonArrivedMembers)
             {
                 if (notArrivedMem.Id == SyncEngine.defaultUser.Id)
-                {
+        {
                     continue;
                 }
             }

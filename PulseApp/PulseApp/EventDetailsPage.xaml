@@ -24,7 +24,7 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Grid.Column="0" Margin="9,0,0,0">
-                        <TextBlock Text="{Binding Name}" Style="{ThemeResource BodyTextBlockStyle}"/>
+                        <TextBlock Text="{Binding DisplayName}" Style="{ThemeResource BodyTextBlockStyle}"/>
                         <TextBlock Text="{Binding Converter={StaticResource memberDetailConverter}}" Style="{ThemeResource ListViewItemSubheaderTextBlockStyle}" />
                     </StackPanel>
                 </Grid>
