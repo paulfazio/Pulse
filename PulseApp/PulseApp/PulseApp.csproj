@@ -87,6 +87,7 @@
     <Compile Include="Common\ObservableDictionary.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="Converters\EventImageConverter.cs" />
     <Compile Include="Converters\ListSizeToVisibilityConverter.cs" />
     <Compile Include="Converters\MemberDetailConverter.cs" />
     <Compile Include="EventDetailsPage.xaml.cs">
@@ -114,6 +115,8 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\CheckMark.png" />
+    <Content Include="Assets\ExclamationPoint.png" />
     <Content Include="Assets\Logo.scale-240.png" />
     <Content Include="Assets\SmallLogo.scale-240.png" />
     <Content Include="Assets\SplashScreen.scale-240.png" />

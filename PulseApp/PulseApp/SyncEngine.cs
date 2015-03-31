@@ -41,13 +41,13 @@ namespace PulseApp
         {
             var events = new List<Event>();
             var members = new List<EventMember>();
-            members.Add(new EventMember { Distance = 0.5, DisplayName = "Joe Schmoe" });
-            members.Add(new EventMember { Distance = 0.1, DisplayName = "Santa Claus" });
-            members.Add(new EventMember { Distance = 15, DisplayName = "Lebron James" });
-            members.Add(new EventMember { Distance = 12, DisplayName = "The Muffin Man" });
-            members.Add(new EventMember { Distance = 8, DisplayName = "John Smith" });
-            members.Add(new EventMember { Distance = 3, DisplayName = "Paul Fazio" });
-            members.Add(new EventMember { Distance = 100, DisplayName = "Brandon Li" });
+            members.Add(new EventMember { Distance = 0.5, DisplayName = "Joe Schmoe", Email = "TextBox" });
+            members.Add(new EventMember { Distance = 0.1, DisplayName = "Santa Claus", Email = "" });
+            members.Add(new EventMember { Distance = 15, DisplayName = "Lebron James", Email = "" });
+            members.Add(new EventMember { Distance = 12, DisplayName = "The Muffin Man", Email = "" });
+            members.Add(new EventMember { Distance = 8, DisplayName = "John Smith", Email = "" });
+            members.Add(new EventMember { Distance = 3, DisplayName = "Paul Fazio", Email = "" });
+            members.Add(new EventMember { Distance = 100, DisplayName = "Brandon Li", Email = "" });
 
             events.Add(new Event { Id = Guid.NewGuid(), Location = "1CC", Name = "Hackathon", Time = DateTime.Now, Members = members });
             events.Add(new Event { Id = Guid.NewGuid(), Location = "1MEM", Name = "Boring stuff", Time = new DateTime(2015, 4, 1, 10, 30, 0), Members = members });

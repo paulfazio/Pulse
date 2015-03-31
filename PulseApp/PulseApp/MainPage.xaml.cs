@@ -116,7 +116,9 @@ namespace PulseApp
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
             ApplicationData.Current.LocalSettings.Values["CurrentUser"] = ((TextBox)this.FindName("UserName")).Text;
+            ApplicationData.Current.LocalSettings.Values["CurrentEmail"] = ((TextBox)this.FindName("EmailAddress")).Text;
             this.Frame.Navigate(typeof(HomePage));
         }
+
     }
 }

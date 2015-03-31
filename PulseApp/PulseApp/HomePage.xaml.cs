@@ -100,9 +100,9 @@ namespace PulseApp
         }
         #endregion
 
-        public void EventsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        public void EventsListView_ItemClicked(object sender, ItemClickEventArgs e)
         {
-            this.PromptResponse((Event)((ListView)sender).SelectedItem);
+            this.PromptResponse((Event)e.ClickedItem);
 
         }
 
@@ -117,10 +117,14 @@ namespace PulseApp
                 var alert = new MessageDialog("Do you plan on attending this event?", "Confirm Attendance");
                 alert.Commands.Add(new UICommand("Accept"));
                 alert.Commands.Add(new UICommand("Decline"));
-                //alert.Commands.Add(new UICommand("Cancel"));
                 var command = await alert.ShowAsync();
 
-                if (command.Label.Equals("Accept"))
+            if (command == null)
+            {
+                return;
+            }
+
+                else if (command.Label.Equals("Accept"))
                 {
                     this.RespondToInvitation(true);
                     this.ShowEvent(thisEvent);
