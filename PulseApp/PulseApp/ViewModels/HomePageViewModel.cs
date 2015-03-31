@@ -10,32 +10,22 @@ namespace PulseApp.ViewModels
 {
     public class HomePageViewModel : INotifyPropertyChanged
     {
+        private SyncEngine syncEngine;
+        private object thisLock;
+
         public HomePageViewModel()
         {
-            this.events = new List<Event>();
+            this.events = new ObservableCollection<Event>();
 
-            var members = new List<EventMember>();
-            members.Add(new EventMember { Distance = "Very far", IsAttending = true, Name = "Joe Schmoe" });
-            this.events.Add(new Event { Location = "1CC", Name = "Hackathon", Time = DateTime.MinValue, Members = members });
-            this.events.Add(new Event { Location = "1MEM", Name = "Boring stuff", Time = DateTime.MinValue, Members = members });
-
+            this.thisLock = new Object();
+            this.syncEngine = new SyncEngine();
+            this.syncEngine.DataRefreshed += this.HandleDataRefreshed;
+            this.syncEngine.RefreshData(this, null);
         }
 
-        private List<Event> events;
-        private List<Event> currentEvent;
-        private List<Event> upcomingEvents;
-        private List<List<Event>> groupedEvents;
+        private ObservableCollection<Event> events;
 
-        public class EventGroup : ObservableCollection<Event>
-        {
-            public string Title { get; set; }
-
-            public EventGroup(IEnumerable<Event> events) : base(events)
-            {
-            }
-        }
-
-        public List<Event> Events
+        public ObservableCollection<Event> Events
         {
             get
             {
@@ -48,12 +38,17 @@ namespace PulseApp.ViewModels
             }
         }
 
-        public IEnumerable<EventGroup> GroupedEvents
+        public void HandleDataRefreshed(object sender, EventArgs e)
         {
-            get
+            lock(this.thisLock)
             {
-                return from currentEvent in this.Events group currentEvent by currentEvent.IsCurrentEvent into eventGroup select new EventGroup(eventGroup) { Title = eventGroup.Key ? "Current Event" : "Upcoming Events" };
+                this.Events.Clear();
+                foreach (var nextEvent in this.syncEngine.Events)
+                {
+                    this.Events.Add(nextEvent);
+                }
             }
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

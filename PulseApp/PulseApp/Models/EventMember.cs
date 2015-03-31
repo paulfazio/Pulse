@@ -7,25 +7,11 @@ using System.Threading.Tasks;
 
 namespace PulseApp.Models
 {
-    public class EventMember : INotifyPropertyChanged
+    public class EventMember : INotifyPropertyChanged, IComparable
     {
-        private bool isAttending;
+        private DateTime lastUpdateTime;
         private string name;
-        private string distance;
-
-        public bool IsAttending
-        {
-            get
-            {
-                return this.isAttending;
-            }
-
-            set
-            {
-                this.isAttending = value;
-                this.NotifyPropertyChanged("IsAttending");
-            }
-        }
+        private double distance;
 
         public string Name
         {
@@ -41,7 +27,21 @@ namespace PulseApp.Models
             }
         }
 
-        public string Distance
+        public DateTime LastUpdateTime
+        {
+            get
+            {
+                return this.lastUpdateTime;
+            }
+
+            set
+            {
+                this.lastUpdateTime = value;
+                this.NotifyPropertyChanged("LastUpdateTime");
+            }
+        }
+
+        public double Distance
         {
             get
             {
@@ -62,6 +62,24 @@ namespace PulseApp.Models
             if (this.PropertyChanged != null)
             {
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        public int CompareTo(object other)
+        {
+            var otherMember = (EventMember)other;
+
+            if (this.Distance < otherMember.Distance)
+            {
+                return -1;
+            }
+            else if (this.Distance > otherMember.Distance)
+            {
+                return 1;
+            }
+            else
+            {
+                return this.Name.CompareTo(otherMember.Name);
             }
         }
     }
