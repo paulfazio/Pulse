@@ -1,4 +1,5 @@
-﻿using PulseApp.Models;
+﻿using PulseApp.Common;
+using PulseApp.Models;
 using PulseApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -24,10 +25,15 @@ namespace PulseApp
     /// </summary>
     public sealed partial class HomePage : Page
     {
+        private NavigationHelper navigationHelper;
+
+
         public HomePage()
         {
             this.InitializeComponent();
             this.DataContext = new HomePageViewModel();
+            this.navigationHelper = new NavigationHelper(this);
+
         }
 
         /// <summary>
@@ -37,18 +43,23 @@ namespace PulseApp
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var x = App.MobileService.SerializerSettings;
+            this.navigationHelper.OnNavigatedTo(e);
         }
 
-        public void Event_Clicked(object sender, ItemClickEventArgs e)
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            this.Frame.Navigate(typeof(EventDetailsPage), (Event)e.ClickedItem);
-
+            this.navigationHelper.OnNavigatedFrom(e);
         }
 
         public void EventsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //this.Frame.Navigate(typeof(EventDetailsPage), ((ListView)sender).SelectedItem);
+            this.Frame.Navigate(typeof(EventDetailsPage), ((ListView)sender).SelectedItem);
+        }
+
+        private void ManualRefresh(object sender, RoutedEventArgs e)
+        {
+            var viewModel = (HomePageViewModel)this.DataContext;
+            viewModel.HandleDataRefreshed(this, EventArgs.Empty);
         }
     }
 }

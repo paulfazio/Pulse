@@ -1,4 +1,5 @@
-﻿using PulseApp.Models;
+﻿using PulseApp.Common;
+using PulseApp.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,11 +25,14 @@ namespace PulseApp
     public sealed partial class EventDetailsPage : Page
     {
         private Event currentEvent;
+        private NavigationHelper navigationHelper;
+
 
         public EventDetailsPage()
         {
             this.InitializeComponent();
- 
+            this.navigationHelper = new NavigationHelper(this);
+
         }
 
         /// <summary>
@@ -40,6 +44,17 @@ namespace PulseApp
         {
             this.currentEvent = (Event)e.Parameter;
             this.DataContext = this.currentEvent;
+            this.navigationHelper.OnNavigatedTo(e);
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            this.navigationHelper.OnNavigatedFrom(e);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
