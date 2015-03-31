@@ -41,7 +41,7 @@
             <TimePicker HorizontalAlignment="Left" Margin="27,315,0,0" VerticalAlignment="Top"/>
             <TextBlock HorizontalAlignment="Left" Margin="27,388,0,0" TextWrapping="Wrap" Text="Invitees" VerticalAlignment="Top" FontSize="24"/>
             <Button Content="Invite By Email" HorizontalAlignment="Left" Margin="27,412,0,0" VerticalAlignment="Top" Width="325" Click="InviteByEmailButton_Click"/>
-            <AppBarButton HorizontalAlignment="Left" Icon="Accept" Label="appbarbutton" Margin="134,465,0,0" VerticalAlignment="Top" Height="52" Click="AppBarButton_Click"/>
+            <AppBarButton HorizontalAlignment="Center" Icon="Accept" Label="appbarbutton" Margin="0" VerticalAlignment="Bottom" Height="52" Click="AppBarButton_Click"/>
 
         </Grid>
     </Grid>
