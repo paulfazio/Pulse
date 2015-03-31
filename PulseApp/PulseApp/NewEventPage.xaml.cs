@@ -104,7 +104,7 @@ namespace PulseApp
             Event newEvent = new Event();
             newEvent.Name = meetingName.Text;
             newEvent.Location = meetingLocation.Text;
-            this.Frame.Navigate(typeof(EventDetailsPage));
+            this.Frame.Navigate(typeof(EventDetailsPage), newEvent);
         }
 
         private async void InviteByEmailButton_Click(object sender, RoutedEventArgs e)
@@ -149,13 +149,11 @@ namespace PulseApp
                 Name = this.meetingName.Text,
                 Location = this.meetingLocation.Text,
                 Time = dateTime,
-                Members = eventMembers
+                Members = eventMembers,
+                Id = new Guid()
             };
 
-            EventManager eveMgr = new EventManager();
-            eveMgr.CreateEvent(pulseEvent, eventMembers);
-
-
+            EventManager.Instance.CreateEvent(pulseEvent);
         }
     }
 }

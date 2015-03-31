@@ -12,9 +12,13 @@
 
 
         <ResourceDictionary>
+            
             <converter:ListSizeToVisibilityConverter x:Key="listSizeToVisibilityConverter" />
             <converter:EventImageConverter x:Key="eventImageConverter" />
 
+            <converter:HasRespondedToVisibilityConverter x:Key="hasRespondedToVisibilityConverter" />
+            <converter:NotHasRespondedToVisibilityConverter x:Key="notHasRespondedToVisibilityConverter" />
+            
             <DataTemplate x:Key="StandardTripleLineItemTemplate">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -23,7 +27,10 @@
                     </Grid.ColumnDefinitions>
 
                     <Border Margin="0,9.5,0,0" Grid.Column="0" HorizontalAlignment="Left">
-                        <Image Source="{Binding Converter={StaticResource eventImageConverter}}" Height="79" Width="79"/>
+                        <Image Visibility="{Binding Converter={StaticResource hasRespondedToVisibilityConverter}}" Source="Assets/CheckMark.png" Height="40" Width="40"/>
+                    </Border>
+                    <Border Margin="0,9.5,0,0" Grid.Column="0" HorizontalAlignment="Left">
+                        <Image Visibility="{Binding Converter={StaticResource notHasRespondedToVisibilityConverter}}" Source="Assets/ExclamationPoint.png" Height="40" Width="40"/>
                     </Border>
                     <StackPanel Grid.Column="1" Margin="14.5,0,0,0">
                         <TextBlock Text="{Binding Name}" Style="{ThemeResource ListViewItemTextBlockStyle}"/>
@@ -36,10 +43,10 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <ScrollViewer>
         <Grid>
+        <ScrollViewer>
             <StackPanel>
-                <TextBlock Margin="9,0,0,20" Text="Pulse" Style="{ThemeResource HeaderTextBlockStyle}" ></TextBlock>
+                <TextBlock Margin="12.5,0,0,20" Text="Pulse" Style="{ThemeResource HeaderTextBlockStyle}" ></TextBlock>
 
                 <Border BorderBrush="White" BorderThickness="1">
                     <TextBlock Margin="5,5,5,5" Text="Upcoming Events" Style="{ThemeResource GroupHeaderTextBlockStyle}"></TextBlock>
@@ -53,14 +60,17 @@
               ItemTemplate="{StaticResource StandardTripleLineItemTemplate}">
 
                 </ListView>
-                <TextBlock Style ="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding Events, Converter={StaticResource listSizeToVisibilityConverter}}" Text="There are no events to show"></TextBlock>
+                <TextBlock Margin="0,0,0,30" Style ="{ThemeResource BodyTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding Events, Converter={StaticResource listSizeToVisibilityConverter}}" Text="There are no events to show"></TextBlock>
+            </StackPanel>            
+        </ScrollViewer>
 
-                <Button HorizontalAlignment="Center" Click="ManualRefresh" Content="Refresh data" ></Button>
-            </StackPanel>
-            <AppBarButton HorizontalAlignment="Center" Icon="Add" Label="" Margin="0" VerticalAlignment="Bottom" RenderTransformOrigin="0.531,-0.457" Height="67" Click="AppBarButton_Click"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+            <AppBarButton Icon="Add" Label="" Click="AppBarButton_Click"/>
+            <AppBarButton Icon="Refresh" Click="ManualRefresh" />
+
+        </StackPanel>
         </Grid>
 
-    </ScrollViewer>
 
 </Page>
 

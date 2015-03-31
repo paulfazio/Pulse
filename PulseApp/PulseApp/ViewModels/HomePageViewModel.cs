@@ -43,7 +43,7 @@ namespace PulseApp.ViewModels
             lock(this.thisLock)
             {
                 this.Events.Clear();
-                foreach (var nextEvent in this.syncEngine.Events)
+                foreach (var nextEvent in SyncEngine.Events)
                 {
                     this.Events.Add(nextEvent);
                 }
