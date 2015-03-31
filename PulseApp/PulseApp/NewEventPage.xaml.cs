@@ -146,11 +146,11 @@ namespace PulseApp
                 Name = this.meetingName.Text,
                 Location = this.meetingLocation.Text,
                 Time = dateTime,
-                Members = eventMembers
+                Members = eventMembers,
+                Id = new Guid()
             };
 
-            EventManager eveMgr = new EventManager();
-            eveMgr.CreateEvent(pulseEvent, eventMembers);
+            EventManager.Instance.CreateEvent(pulseEvent);
         }
     }
 }

@@ -10,13 +10,29 @@ namespace PulseApp.Common
 {
     public class EventManager
     {
-        public async void CreateEvent(Event pulseEvent, List<EventMember> intendedAttendees)
+        private static EventManager instance;
+
+        private EventManager() { }
+
+        public static EventManager Instance
+        {
+            get 
+            {
+                if (instance == null)
+                {
+                    instance = new EventManager();
+                }
+                return instance;
+            }
+        }
+
+        public async void CreateEvent(Event pulseEvent)
         {
             MessageDialog messageDialog = new MessageDialog("Event Creation", "Event has been submitted");
             await messageDialog.ShowAsync();
         }
 
-        public void UpdateEvent(Event pulseEvent, List<EventMember> intendedAttendees)
+        public void UpdateEvent(Event pulseEvent)
         {
 
         }
@@ -30,9 +46,9 @@ namespace PulseApp.Common
         {
 
         }
-        public void GetEventStatus(Guid eventID)
+        public Event GetEventStatus(Guid eventID)
         {
-
+            return SyncEngine.Events.Where(x => x.Id == eventID).First();
         }
     }
 }

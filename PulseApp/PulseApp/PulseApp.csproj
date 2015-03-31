@@ -82,10 +82,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\CoordinatesHelper.cs" />
     <Compile Include="Common\EventManager.cs" />
     <Compile Include="Common\NavigationHelper.cs" />
     <Compile Include="Common\ObservableDictionary.cs" />
     <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Common\StatusManager.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="Converters\ListSizeToVisibilityConverter.cs" />
     <Compile Include="Converters\MemberDetailConverter.cs" />
