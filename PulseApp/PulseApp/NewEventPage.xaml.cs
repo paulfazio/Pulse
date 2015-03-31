@@ -107,7 +107,7 @@ namespace PulseApp
             this.Frame.Navigate(typeof(EventDetailsPage));
         }
 
-        private async void InviteByEmailButton_Click(object sender, RoutedEventArgs e)
+        private void InviteByEmailButton_Click(object sender, RoutedEventArgs e)
         {
             // Define Recipient
             EmailRecipient sendTo = new EmailRecipient()

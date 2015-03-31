@@ -13,6 +13,8 @@ namespace PulseApp.Models
         private string location;
         private DateTime time;
         private List<EventMember> members;
+        private List<EventMember> arrivedMembers;
+        private List<EventMember> nonarrivedMembers;
 
 
         public Guid Id { get; set; }
@@ -75,9 +77,13 @@ namespace PulseApp.Models
         {
             get
             {
-                var members = this.Members.FindAll(member => member.Distance <= 0.1);
-                members.Sort();
-                return members;
+                arrivedMembers = this.Members.FindAll(member => member.Distance <= 0.1);
+                arrivedMembers.Sort();
+                return arrivedMembers;
+            }
+            set
+            {
+                arrivedMembers = value;
             }
         }
 
@@ -85,9 +91,14 @@ namespace PulseApp.Models
         {
             get
             {
-                var members = this.Members.FindAll(member => member.Distance > 0.1);
-                members.Sort();
-                return members;
+                nonarrivedMembers = this.Members.FindAll(member => member.Distance > 0.1);
+                nonarrivedMembers.Sort();
+                return nonarrivedMembers;
+            }
+
+            set
+            {
+                nonarrivedMembers = value;
             }
         }
 

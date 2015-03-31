@@ -119,10 +119,10 @@ namespace PulseApp
                 alert.Commands.Add(new UICommand("Decline"));
                 var command = await alert.ShowAsync();
 
-            if (command == null)
-            {
-                return;
-            }
+                if (command == null)
+                {
+                    return;
+                }
 
                 else if (command.Label.Equals("Accept"))
                 {

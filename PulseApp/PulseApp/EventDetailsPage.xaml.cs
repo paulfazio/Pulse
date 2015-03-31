@@ -85,26 +85,29 @@ namespace PulseApp
 
         private void UpdateUIStatus(List<EventMember> eventMembers)
         {
-            var arrivedMembers = eventMembers.Where(x => x.Distance < 1.0);
-            var nonArrivedMembers = eventMembers.Where(x => x.Distance >= 1.0);
+            var arrivedMembers = eventMembers.Where(x => x.Distance < 16);
+            var nonArrivedMembers = eventMembers.Where(x => x.Distance >= 16);
 
-            // update arrived
-            foreach (var arrivedMem in arrivedMembers)
-            {
-                if (arrivedMem.Id == SyncEngine.defaultUser.Id)
-                {
-                    continue;
-                }
-            }
+            this.currentEvent.ArrivedMembers = arrivedMembers.ToList();
+            this.currentEvent.UnarrivedMembers = nonArrivedMembers.ToList();
 
-            // update non arrived
-            foreach (var notArrivedMem in nonArrivedMembers)
-            {
-                if (notArrivedMem.Id == SyncEngine.defaultUser.Id)
-        {
-                    continue;
-                }
-            }
+            //// update arrived
+            //foreach (var arrivedMem in arrivedMembers)
+            //{
+            //    if (arrivedMem.Id == SyncEngine.defaultUser.Id)
+            //    {
+            //        continue;
+            //    }
+            //}
+
+            //// update non arrived
+            //foreach (var notArrivedMem in nonArrivedMembers)
+            //{
+            //    if (notArrivedMem.Id == SyncEngine.defaultUser.Id)
+            //    {
+            //        continue;
+            //    }
+            //}
 
             // update my status
         }

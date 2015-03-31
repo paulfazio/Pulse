@@ -13,20 +13,24 @@ namespace PulseApp
     {
         private SemaphoreSlim syncSemaphore;
         private DispatcherTimer refreshTimer;
+        private static List<Event> currentEvents;
 
         public event EventHandler DataRefreshed;
 
         public static List<Event> Events { 
             get
             {
-                if (Events == null)
+                if (currentEvents == null || currentEvents.Count == 0)
                 {
                     MockData();
                 }
 
-                return Events;
+                return currentEvents;
             }
-            set; 
+            set
+            {
+                currentEvents = value;
+            }
         }
 
         public static EventMember defaultUser { get; set; }
@@ -54,23 +58,23 @@ namespace PulseApp
         {
             var events = new List<Event>();
             var members = new List<EventMember>();
-            members.Add(new EventMember { Id = new Guid(), Distance = 0.5, Name = "Joe Schmoe" });
-            members.Add(new EventMember { Id = new Guid(), Distance = 0.1, Name = "Santa Claus" });
-            members.Add(new EventMember { Id = new Guid(), Distance = 15, Name = "Lebron James" });
-            members.Add(new EventMember { Id = new Guid(), Distance = 12, Name = "The Muffin Man" });
-            members.Add(new EventMember { Id = new Guid(), Distance = 8, Name = "John Smith" });
-            members.Add(new EventMember { Id = new Guid(), Distance = 3, Name = "Paul Fazio" });
-            members.Add(new EventMember { Id = new Guid(), Distance = 100, Name = "Brandon Li" });
+            members.Add(new EventMember { Id = new Guid(), Distance = 0.5, DisplayName = "Joe Schmoe", Email = "joe@outlook.com" });
+            members.Add(new EventMember { Id = new Guid(), Distance = 0.1, DisplayName = "Santa Claus", Email = "sc@xmas.com" });
+            members.Add(new EventMember { Id = new Guid(), Distance = 15, DisplayName = "Lebron James", Email = "lebron@james.com" });
+            members.Add(new EventMember { Id = new Guid(), Distance = 12, DisplayName = "The Muffin Man", Email = "tmm@yahoo.com" });
+            members.Add(new EventMember { Id = new Guid(), Distance = 8, DisplayName = "John Smith", Email = "js@gmail.com" });
+            members.Add(new EventMember { Id = new Guid(), Distance = 3, DisplayName = "Paul Fazio", Email = "pfazio@microsoft.com" });
+            members.Add(new EventMember { Id = new Guid(), Distance = 100, DisplayName = "Brandon Li", Email = "brali@microsoft.com" });
             defaultUser = members[5];
 
             events.Add(new Event { Id = new Guid(), Location = "1CC", Name = "Hackathon", Time = DateTime.Now, Members = members });
             events.Add(new Event { Id = new Guid(), Location = "1MEM", Name = "Boring stuff", Time = new DateTime(2015, 4, 1, 10, 30, 0), Members = members });
 
-            Events.Clear();
+            currentEvents.Clear();
 
             foreach (var nextEvent in events)
             {
-                Events.Add(nextEvent);
+                currentEvents.Add(nextEvent);
             }
         }
     }
